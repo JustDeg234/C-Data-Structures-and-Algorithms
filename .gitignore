@@ -1,0 +1,9 @@
+# Compiled binaries
+heapsort
+heapsort.exe
+
+# Object files
+*.o
+
+# OS junk
+.DS_Store
