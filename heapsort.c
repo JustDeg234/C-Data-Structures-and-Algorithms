@@ -48,7 +48,7 @@ void heapify(int arr[], int n, int i)
 
 		//recursively heapify the affected subtree to guarantee validity 
 		// throughout the heap because swapping might violate the max-heap property
-		heapify(arr, n, largest);
+		heapify(arr, n, largest); //i floats down the tree until it finds its proper place
 	}
 }
 
