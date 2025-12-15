@@ -18,7 +18,7 @@ void swap(int *a, int *b) //reference to a, b
 /*
 heapify() purpose:
 - ensure the subtree rooted at index i obeys the MAX-HEAP property of node i <= value of parent
-- parameters: arr[] array currently sorted, n size of heap (not always equal to arr), i index of current root node
+- parameters: arr[] array currently sorted, n size of heap (not always equal to arr, decreases as array is sorted), i index of current root node
 */
 
 void heapify(int arr[], int n, int i)
