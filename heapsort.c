@@ -1,4 +1,6 @@
 #include <stdio.h> //printf()
+#include <stdlib.h> //rand() num gen
+#include <time.h> //runtime benchmarking
 
 /*
 swap() purpose:
@@ -94,19 +96,31 @@ main() purpose:
 
 int main()
 {
-	int arr[] = {12, 11, 13, 2, 5, 6, 7}; //sample unsorted input array
-	
-	int n = sizeof(arr) / sizeof(arr[0]); //total byte size / one byte = num of elements
+	const int n = 100000; //size for benchmarking
+	int *arr = malloc(n * sizeof(int)); //memory allocate for n size array of int sized elements
 
-	printf("Sample array:\n");
-	printArray(arr, n);
+	if (!arr) //memory allocation fail checker
+	{
+		printf("Memory allocation failed\n");
+		return 1; //1 is error return code
+	}
 
-	heapSort(arr, n); //Heap SORT
+	for (int i=0; i<n; i++) // populate array with random values
+		arr[i] = rand(); //{} not needed for one statement
 
-	printf("Sorted array:\n");
-	printArray(arr, n);
+	clock_t start = clock(); //clock_t struct
+	heapSort(arr, n);
+	clock_t end = clock();
 
+	double elapsed = (double)(end - start) / CLOCKS_PER_SEC;
+
+	printf("HeapSort algorithm time: %f seconds\n", elapsed);
+
+	free(arr); //free memory used
 	return 0;
 }
+	
+//ran with 'gcc heapsort.c -O2 -o heapsort' ./heapsort
+//output: HeapSort algorithm time: 0.012000 seconds
 // Heapsort has O(nlogn) guaranteed due to heap binary tree time complexity, and O(1) space complexity, recursion depth is proportional only to logn not n, but its not stabel and slower than quicksort due to cache behavior
 
